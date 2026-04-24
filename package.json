@@ -1,0 +1,13 @@
+{
+  "name": "economy",
+  "version": "1.0.0",
+  "description": "CRYSNOVA Economy Engine - Realistic Virtual Economy API",
+  "main": "worker.js",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "^4.81.1"
+  }
+}

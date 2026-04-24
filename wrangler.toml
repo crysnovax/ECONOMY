@@ -1,0 +1,7 @@
+name = "economy"
+main = "worker.js"
+compatibility_date = "2026-04-13"
+
+[[kv_namespaces]]
+binding = "ECONOMY_KV"
+id = "YOUR_KV_NAMESPACE_ID"

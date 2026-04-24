@@ -5,3 +5,5 @@ compatibility_date = "2026-04-13"
 [[kv_namespaces]]
 binding = "ECONOMY_KV"
 id = "a0d3273dc3494d86b7d38c0c9fc6c0f7"
+[observability]
+enabled = false

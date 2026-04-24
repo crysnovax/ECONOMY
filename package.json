@@ -1,7 +1,7 @@
 {
   "name": "econ",
   "version": "1.0.0",
-  "description": "CRYSNOVA Economy Engine - Realistic Virtual Economy API",
+  "description": "CRYSNOVA Economy Engine - Realistic Virtual Economy API all bots supported",
   "main": "worker.js",
   "scripts": {
     "deploy": "wrangler deploy",

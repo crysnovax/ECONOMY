@@ -524,6 +524,7 @@ async function handleFaction(env, phone, action, factionId) {
 }
 
 // ==================== ADMIN HANDLERS ====================
+// ==================== ADMIN HANDLERS (FIXED) ====================
 async function handleAdminStats(env) {
   try {
     const users = [];
@@ -555,17 +556,35 @@ async function handleAdminStats(env) {
 }
 
 async function handleAdminAddMoney(env, phone, amount) {
-  const user = await getOrCreateUser(env, phone);
+  const clean = cleanPhone(phone);
+  if (clean.length < 7) return errorResponse('Invalid phone number');
+  if (!amount || amount <= 0) return errorResponse('Amount must be positive');
+  
+  const user = await getOrCreateUser(env, clean);
   user.balance += amount;
-  await saveUser(env, phone, user);
-  return jsonResponse({ message: `Added ${amount} coins to ${phone}`, newBalance: user.balance });
+  await saveUser(env, clean, user);
+  
+  return jsonResponse({ 
+    message: `Added ${amount} coins to ${clean}`, 
+    phone: clean,
+    newBalance: user.balance 
+  });
 }
 
 async function handleAdminRemoveMoney(env, phone, amount) {
-  const user = await getOrCreateUser(env, phone);
+  const clean = cleanPhone(phone);
+  if (clean.length < 7) return errorResponse('Invalid phone number');
+  if (!amount || amount <= 0) return errorResponse('Amount must be positive');
+  
+  const user = await getOrCreateUser(env, clean);
   user.balance = Math.max(0, user.balance - amount);
-  await saveUser(env, phone, user);
-  return jsonResponse({ message: `Removed ${amount} coins from ${phone}`, newBalance: user.balance });
+  await saveUser(env, clean, user);
+  
+  return jsonResponse({ 
+    message: `Removed ${amount} coins from ${clean}`, 
+    phone: clean,
+    newBalance: user.balance 
+  });
 }
 
 async function handleAdminResetEconomy(env) {
